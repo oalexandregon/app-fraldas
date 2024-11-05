@@ -1,10 +1,11 @@
 import logo from './logo.svg';
 import './App.scss';
+import MuiButton from './components/button';
 
 function App() {
   return (
     <div className="App">
-      <p>HOME</p>
+      <Button/>
     </div>
   );
 }
