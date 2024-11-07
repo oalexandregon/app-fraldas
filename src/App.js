@@ -1,11 +1,14 @@
-import logo from './logo.svg';
 import './App.scss';
+import { Button } from "./components";
+import { NativeBaseProvider } from "native-base";
 
 function App() {
   return (
-    <div className="App">
-      <p>HOME</p>
-    </div>
+    <NativeBaseProvider>
+      <Button />
+    </NativeBaseProvider>
+
   );
 }
+
 export default App;
