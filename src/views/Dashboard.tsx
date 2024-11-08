@@ -1,6 +1,7 @@
-export default function Dashboard() {
+ const Dashboard: React.FC = function () {
     return (
       <h1>Dashboard</h1>
     );
   }
   
+  export default Dashboard;
