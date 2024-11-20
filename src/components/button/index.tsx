@@ -6,7 +6,7 @@ interface IButtonProps extends ButtonProps {
   children: React.ReactNode;
 }
 
-const ButtonComponent: React.FC<IButtonProps> = ({ children, props }) => {
+const ButtonComponent: React.FC<IButtonProps> = ({ children, ...props }) => {
   return (
     <Button {...props}>{children}</Button>
   );
