@@ -2,7 +2,7 @@ import { Typography , TypographyProps } from '@mui/material';
 
 interface ITextProps extends TypographyProps {
   children?: React.ReactNode;
-  props: any;
+  props?: any;
 }
 
 const TextComponent: React.FC<ITextProps> = ({ children, ...props }) => {

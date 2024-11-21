@@ -1,14 +1,10 @@
-import Tab from '@mui/material/Tab';
+import Tab, {TabProps} from '@mui/material/Tab';
 
-interface TabProps {
-    children?: React.ReactNode;
-    props: any;
-  }
 
-  const TabComponent: React.FC<TabProps> = ({children, props}) => {
-    return(
-        <Tab {...props}/> 
-    )
-  }
 
-  export default TabComponent
+
+const TabComponent: React.FC<TabProps> = ( props ) => {
+  return <Tab {...props}/>;
+}
+
+export default TabComponent;
