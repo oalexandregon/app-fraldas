@@ -48,8 +48,7 @@ const CustomList = ({items, ...props}) => {
                 return <ListItem  sx={{
                                     backgroundColor: "#fff",
                                     borderRadius: "60px",
-                                    marginTop: '1em',
-                                    
+                                    marginTop: '1em'
                                 }}
                                 id={`new-item-list-${index}`}
                                 onClick={() => navigate(`/${item.action_type}/${item.id}`)}

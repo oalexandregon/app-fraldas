@@ -6,13 +6,17 @@ const CardNewItemComponent = ({Icon, color, title, actionType}) => {
     const navigate = useNavigate();
 
     return <Card sx={{
-        overflow: 'visible',
-        borderRadius: '10%'
+        borderRadius: '10%',
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        gap: "20px"
     }}>
-                <Grid sx={{
+                <Grid container sx={{
                     display: 'flex',
                     flexDirection: 'column',
-                    alignItems: 'center'
+                    alignItems: 'center',
+                    flexGrow: 1,
                 }}>
                     <Icon 
                         sx={{
@@ -31,7 +35,7 @@ const CardNewItemComponent = ({Icon, color, title, actionType}) => {
                         }}
                     >{title}</Typography>
                 </Grid>
-                <Grid sx={{
+                <Grid item container sx={{
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'center'
@@ -45,7 +49,7 @@ const CardNewItemComponent = ({Icon, color, title, actionType}) => {
                         }}
                     >Adicione algo</Typography>
                 </Grid>
-                <Grid sx={{
+                <Grid item sx={{
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'center',

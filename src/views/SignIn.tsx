@@ -27,7 +27,7 @@ const SignIn: React.FC = () => {
         if (error && error.message === "Invalid login credentials"){
             showSnackMessage("Dados de usuário inválidos");
         } else {
-            console,
+            console.log(response);
             localStorage.setItem("session", JSON.stringify(response.session));
             localStorage.setItem("user", JSON.stringify(response.user));
             navigate("/");
