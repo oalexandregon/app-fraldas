@@ -4,9 +4,9 @@ import Typography from '@mui/material/Typography';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useNavigate } from 'react-router-dom';
-import { IconButton, Box } from '..';
+import { IconButton, Box } from '@mui/material';
 
-const AppBarComponent = ({...props}) => {
+const AppBarComponent = ({title, id, _delete}) => {
     const navigate = useNavigate();
 
     return <AppBar position="static">
@@ -32,10 +32,14 @@ const AppBarComponent = ({...props}) => {
                     width: '100%',
                     zIndex: '1'
                 }}>
-                    {props.title}
+                    {title}
+                    
                 </Typography>
+             
+                
                 {
-                    props.id ?   <Box sx={{ 
+                    
+                    id ?  ( <Box sx={{ 
                                         display: { xs: 'flex', md: 'none' },
                                         position: 'absolute',
                                         right: '1.5em'    
@@ -49,11 +53,12 @@ const AppBarComponent = ({...props}) => {
                                             position: 'relative',
                                             zIndex: '2'
                                         }}
-                                        onClick={props._delete}
+                                        onClick={_delete}
                                     >
-                                        <DeleteIcon />
+                                        
                                     </IconButton>
-                                </Box> : null
+                                    <DeleteIcon />
+                                </Box>) : null
                 }
             </Toolbar>
         </AppBar>

@@ -8,8 +8,8 @@ const Sleep = ({ data, setData, translate }) => {
     setData({...data, 'action_type': 1})  
   }, [])
 
-  return  <Grid container={true} spacing={2}>
-              <Grid item={true} size={{ xs: 12 }}>
+  return  <Grid container={true} spacing={2} sx={{display: "flex", justifyContent: 'center'}}>
+              <Grid item={true} size={{ xs: 12 }} sx={{ width: "clamp(100px, 80vw, 500px)" }}>
                 <DateTimePicker
                   value={data?.start_date ? adjustDateTimeForTimezone(data?.start_date) : null}
                   label={translate("data-hour-start")}
@@ -18,9 +18,10 @@ const Sleep = ({ data, setData, translate }) => {
                   ampm={false}
                   format="DD/MM/YYYY HH:mm"
                   onChange={(value) => {handleInputChange('start_date', new Date(value.toString()), data, setData)}}
+                  
                 />
               </Grid>
-              <Grid item={true} size={{ xs: 12 }}>
+              <Grid item={true} size={{ xs: 12 }} sx={{ width: "clamp(100px, 80vw, 500px)" }}>
                 <DateTimePicker
                   value={data?.end_date ? adjustDateTimeForTimezone(data?.end_date) : null}
                   label={translate("data-hour-end")}
@@ -31,7 +32,7 @@ const Sleep = ({ data, setData, translate }) => {
                   onChange={(value) => {handleInputChange('end_date', new Date(value.toString()), data, setData)}}
                 />
               </Grid>
-              <Grid item={true} size={{ xs: 12 }}>
+              <Grid item={true} size={{ xs: 12 }} sx={{ width: "clamp(100px, 80vw, 500px)" }}>
                 <TextField
                   value={data?.observation ? data.observation : ""}
                   label={translate("observation")}

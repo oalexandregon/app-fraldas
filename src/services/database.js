@@ -1,51 +1,48 @@
-const generateUid = () => {
-    return 'uid-' + Math.random().toString(36).substr(2, 18);
-}
+import { createClient } from "@supabase/supabase-js";
+import { getUser } from '../utils/core'
 
-const update = (data, id) => {
-    const totalData = list();
-    const index = totalData.findIndex(item => item.id === id);
-    totalData[index] = data;
-    
-    updateStorage(totalData);
-}
+const supabase = createClient(import.meta.env.VITE_SUPABASE_URL, import.meta.env.VITE_SUPABASE_ANON_KEY)
 
-const drop = (id) => {
-    const totalData = list();
-    const index = totalData.findIndex(item => item.id === id);
-    totalData.splice(index, 1)
-    
-    updateStorage(totalData);
-}
 
-const get = (id) => {
-    const totalData = list();
+const user = getUser();
 
-    return totalData.find((item) => item.id === id);
-}
-
-const list = () => {
-    const data = localStorage.getItem("items");
-    if(data) {
-        return JSON.parse(data)
+const update = async (table, data, id) => {
+    if (id) {
+        data.id = id;
     }
-    return [];
+    return await supabase.from(table).upsert(data).select()
 }
 
-const save = (data) => {
-    const totalData = list();
+const drop = async (table, id) => {
+    return await supabase.from(table).delete().eq("id", id)
+}
 
-    const d = {
-        id: generateUid(),
-        ...data
+const get = async (table, conditions) => {
+
+    let query =  await supabase.from(table).select()
+    for (let condition of conditions) {
+        query = query.eq(condition.field, condition.value)
     }
+    
+    const {data, error} =  query.order('created_at', {ascending: false})
 
-    totalData.push(d);
-    updateStorage(totalData);
+    if (error) {
+        console.error("Erro ao buscar dados", error.message)
+        throw error;
+    }
+    return data[0];
 }
 
-const updateStorage = (data) => {
-    localStorage.setItem("items", JSON.stringify(data));
+const list = async (table) => {
+    const { data, error } = await supabase.from(table).select().eq("user_id", user.id).order('created_at', { ascending: false })
+    if (error) {
+        throw error;
+    }
+    return data;
+}
+
+const save = async (table, data) => {
+    await update(table, data, null)
 }
 
 export {

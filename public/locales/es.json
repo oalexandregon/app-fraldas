@@ -54,5 +54,9 @@
     "min": "Min.",
     "from": "De",
     "to": "Hasta",
-    "days": "Día(s)"
+    "days": "Día(s)",
+    "first-header-settings-page": "Seleccione el idioma deseado:",
+    "second-header-settings-page": "Ingrese los datos del bebé:",
+    "my-baby": "Mi Bebé",
+    "add": "Agregar Algo"
   }

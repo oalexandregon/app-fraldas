@@ -16,7 +16,15 @@ const handleChange = (data, setData, value, field) => {
     }));
 }
 
+const getUser = () => {
+    return JSON.parse(localStorage.getItem("session")).user
+    
+}
+
+
+
 export {
     handleChange,
-    adjustDateTimeForTimezone
+    adjustDateTimeForTimezone,
+    getUser
 }

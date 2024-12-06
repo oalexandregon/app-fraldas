@@ -54,5 +54,9 @@
     "min": "Min.",
     "from": "From",
     "to": "To",
-    "days": "Day(s)"
+    "days": "Day(s)",
+    "first-header-settings-page": "Select the intended language:",
+    "second-header-settings-page": "Enter the baby's information:",
+    "my-baby": "My Baby",
+    "add": "Add Something"
   }

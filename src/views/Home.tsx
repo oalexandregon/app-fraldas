@@ -7,6 +7,7 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAppContext } from "../Context";
+import { list } from "../services/database"
 
 const Home: React.FC = () => {
     const {
@@ -22,7 +23,16 @@ const Home: React.FC = () => {
 
     const [data, setData] = useState([]);
 
+    const loadData = async () => {
+        const d = await list('action_app_fraldas');
+        if (d) {
+            setData(d);
+        }
+    }
+
     useEffect(() => {
+        loadData();
+
         const ageData = localStorage.getItem("childAge");
         const nameData = localStorage.getItem("childName");
         const weightData = localStorage.getItem("childWeight");
@@ -76,7 +86,7 @@ const Home: React.FC = () => {
                             ...styles.centerBox,
                             ...styles.boxText
                         }}>
-                            <Typography component="p" sx={{ ...styles.text2 }}>{childHeight ? `${childHeight} cm` : 'Comprimento não informado'}</Typography>
+                            <Typography component="p" sx={{ ...styles.text2 }}>{childHeight ? `${childHeight} cm` : null}</Typography>
                             <Typography component="p" sx={{ ...styles.text3 }}>{childWeight ? `Peso` : null}</Typography>
                         </Box>
                     </Box>
@@ -96,8 +106,8 @@ const Home: React.FC = () => {
                             ...styles.centerBox,
                             ...styles.boxText
                         }}>
-                            <Typography component="p" sx={{ ...styles.text1 }}>{childName ? `${childName}` : 'Nome do bebê não informado'}</Typography>
-                            <Typography component="p" sx={{ ...styles.text3 }}>{childAge ? `${childAge} dias` : 'Idade do bebê não informada'}</Typography>
+                            <Typography component="p" sx={{ ...styles.text1 }}>{childName ? `${childName}` : translate('my-baby')}</Typography>
+                            <Typography component="p" sx={{ ...styles.text3 }}>{childAge ? `${childAge} dias` : null}</Typography>
                         </Box>
                     </Box>
                 </Grid>
@@ -125,7 +135,7 @@ const Home: React.FC = () => {
                             ...styles.centerBox,
                             ...styles.boxText
                         }}>
-                            <Typography component="p" sx={{ ...styles.text2 }}>{childWeight ? `${childWeight} kg` : 'Peso não informado'}</Typography>
+                            <Typography component="p" sx={{ ...styles.text2 }}>{childWeight ? `${childWeight} kg` : null}</Typography>
                             <Typography component="p" sx={{ ...styles.text3 }}>{childWeight ? `Peso` : null}</Typography>
                         </Box>
                     </Box>
@@ -148,22 +158,17 @@ const Home: React.FC = () => {
                 }}
             >
                 <Grid size={{ xs: 12 }}>
-                    <Grid container={true}>
+                    <Grid container={true} spacing={4} >
                         {
-                            ACTIONS.map((action, index) => (
-
-
+                            ACTIONS.map(action => <Grid item size={{ xs: 4 }}>
                                 <CardNewItem
                                     title={action.title}
                                     Icon={action.Icon}
                                     color={action.color}
                                     actionType={action.actionType}
-                                    key={index}
-
+                                    translation={action.translation}
                                 />
-
-
-                            ))
+                            </Grid>)
                         }
                     </Grid>
                     <Grid container={true} sx={{
