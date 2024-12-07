@@ -27,9 +27,18 @@ const signUp = async (email, password, supabase) => {
     });
 }
 
+const signOut = async (supabase, navigate) => {
+    localStorage.removeItem("session");
+    localStorage.removeItem("user");
+
+    await supabase.auth.signOut();
+
+    return navigate("/signin")
+}
 export {
     isAuthenticated,
     handleVerificationProtected,
     signIn,
-    signUp
+    signUp,
+    signOut
 }

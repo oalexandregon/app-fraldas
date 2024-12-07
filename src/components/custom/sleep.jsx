@@ -8,7 +8,7 @@ const Sleep = ({ data, setData, translate }) => {
     setData({...data, 'action_type': 1})  
   }, [])
 
-  return  <Grid container={true} spacing={2} sx={{display: "flex", justifyContent: 'center'}}>
+  return  <Grid container={true} spacing={2} sx={{display: "flex", justifyContent: 'center', maxWidth: "500px"}}>
               <Grid item={true} size={{ xs: 12 }} sx={{ width: "clamp(100px, 80vw, 500px)" }}>
                 <DateTimePicker
                   value={data?.start_date ? adjustDateTimeForTimezone(data?.start_date) : null}

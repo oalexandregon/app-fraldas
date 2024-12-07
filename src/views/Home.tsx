@@ -7,24 +7,27 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAppContext } from "../Context";
-import { list } from "../services/database"
+import { list, get } from "../services/database"
+import { getUser, calculateDuration } from "../utils/core";
 
 const Home: React.FC = () => {
     const {
         changeLanguage,
         translate,
-        showChildName, showChildWeight, showChildHeight, showChildAge,
-        childName, childWeight, childHeight, childAge
-
     } = useAppContext();
 
+    const user = getUser()
     const navigate = useNavigate();
     const theme = useTheme();
 
     const [data, setData] = useState([]);
+    const [profile, setProfile] = useState({})
 
     const loadData = async () => {
         const d = await list('action_app_fraldas');
+        const profile = await get("profile", [{ field: "user_id", value: user.id }])
+        setProfile(profile)
+
         if (d) {
             setData(d);
         }
@@ -32,24 +35,6 @@ const Home: React.FC = () => {
 
     useEffect(() => {
         loadData();
-
-        const ageData = localStorage.getItem("childAge");
-        const nameData = localStorage.getItem("childName");
-        const weightData = localStorage.getItem("childWeight");
-        const heightData = localStorage.getItem("childHeight");
-
-        if (ageData) {
-            showChildAge(ageData);
-        }
-        if (nameData) {
-            showChildName(nameData)
-        }
-        if (weightData) {
-            showChildWeight(weightData)
-        }
-        if (heightData) {
-            showChildHeight(heightData)
-        }
     }, [])
     return <Grid container={true}>
         <Grid size={{ xs: 12 }}
@@ -86,8 +71,8 @@ const Home: React.FC = () => {
                             ...styles.centerBox,
                             ...styles.boxText
                         }}>
-                            <Typography component="p" sx={{ ...styles.text2 }}>{childHeight ? `${childHeight} cm` : null}</Typography>
-                            <Typography component="p" sx={{ ...styles.text3 }}>{childWeight ? `Peso` : null}</Typography>
+                            <Typography component="p" sx={{ ...styles.text2 }}>{profile?.height} {translate("cm")}</Typography>
+                            <Typography component="p" sx={{ ...styles.text3 }}>{translate("height")}</Typography>
                         </Box>
                     </Box>
                 </Grid>
@@ -106,8 +91,8 @@ const Home: React.FC = () => {
                             ...styles.centerBox,
                             ...styles.boxText
                         }}>
-                            <Typography component="p" sx={{ ...styles.text1 }}>{childName ? `${childName}` : translate('my-baby')}</Typography>
-                            <Typography component="p" sx={{ ...styles.text3 }}>{childAge ? `${childAge} dias` : null}</Typography>
+                            <Typography component="p" sx={{...styles.text1}}>{profile?.name}</Typography>
+                            <Typography component="p" sx={{...styles.text3}}>{profile?.birth ? calculateDuration(profile?.birth, "days") : 0} {translate("days")}</Typography>
                         </Box>
                     </Box>
                 </Grid>
@@ -135,8 +120,8 @@ const Home: React.FC = () => {
                             ...styles.centerBox,
                             ...styles.boxText
                         }}>
-                            <Typography component="p" sx={{ ...styles.text2 }}>{childWeight ? `${childWeight} kg` : null}</Typography>
-                            <Typography component="p" sx={{ ...styles.text3 }}>{childWeight ? `Peso` : null}</Typography>
+                            <Typography component="p" sx={{...styles.text2}}>{profile?.weight} {translate("kg")}</Typography>
+                            <Typography component="p" sx={{...styles.text3}}>{translate("weight")}</Typography>
                         </Box>
                     </Box>
                 </Grid>

@@ -60,7 +60,7 @@ const CustomList = ({items, ...props}) => {
                                     {getIcon(item.action_type)}
                                 </Avatar>
                             </ListItemAvatar>
-                            <ListItemText primary={translate(typeStr)} secondary={generateSubtitle(item, translate)} />
+                            <ListItemText primary={translate(typeStr)} secondary={generateSubtitle(item)} />
                         </ListItem>
             })
         }

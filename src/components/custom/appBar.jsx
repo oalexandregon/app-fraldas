@@ -40,7 +40,6 @@ const AppBarComponent = ({title, id, _delete}) => {
                 {
                     
                     id ?  ( <Box sx={{ 
-                                        display: { xs: 'flex', md: 'none' },
                                         position: 'absolute',
                                         right: '1.5em'    
                                     }}>
@@ -55,9 +54,9 @@ const AppBarComponent = ({title, id, _delete}) => {
                                         }}
                                         onClick={_delete}
                                     >
-                                        
+                                        <DeleteIcon />
                                     </IconButton>
-                                    <DeleteIcon />
+                                    
                                 </Box>) : null
                 }
             </Toolbar>

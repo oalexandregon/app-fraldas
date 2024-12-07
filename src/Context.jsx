@@ -43,27 +43,6 @@ const AppProvider = ({ children }) => {
   const [childAge, setChildAge] = useState(null);
 
 
-
-  // const showChildAge = (age) => {
-  //   setChildAge(age)
-  //   localStorage.setItem('childAge', age)
-  // }
-
-  // const showChildName = (name) => {
-  //   setChildName(name)
-  //   localStorage.setItem('childName', name)
-  // }
-
-  // const showChildWeight = (weight) => {
-  //   setChildWeight(weight)
-  //   localStorage.setItem('childWeight', weight)
-  // }
-
-  // const showChildHeight = (height) => {
-  //   setChildHeight(height)
-  //   localStorage.setItem('childHeight', height)
-  // }
-
   const changeLanguage = (lang) => {
     i18n.changeLanguage(lang);
     localStorage.setItem("language", lang);
@@ -95,15 +74,6 @@ const AppProvider = ({ children }) => {
     showAlertMessage,
     translate,
     supabase,
-    // showChildName,
-    // showChildWeight,
-    // showChildHeight,
-    // childName,
-    // childWeight,
-    // childHeight,
-    // showChildAge,
-    // childAge,
-
   };
 
   useEffect(() => {

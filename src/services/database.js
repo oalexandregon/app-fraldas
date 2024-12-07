@@ -18,16 +18,17 @@ const drop = async (table, id) => {
 }
 
 const get = async (table, conditions) => {
+    let query = supabase.from(table).select()
 
-    let query =  await supabase.from(table).select()
-    for (let condition of conditions) {
-        query = query.eq(condition.field, condition.value)
+    if(conditions && conditions.length > 0){
+        for(let condition of conditions){
+            query = query.eq(condition.field, condition.value)
+        }
     }
     
-    const {data, error} =  query.order('created_at', {ascending: false})
-
-    if (error) {
-        console.error("Erro ao buscar dados", error.message)
+    const { data, error } = await query.order('created_at', { ascending: false });
+    
+    if(error){
         throw error;
     }
     return data[0];

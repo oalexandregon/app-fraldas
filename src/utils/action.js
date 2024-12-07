@@ -6,8 +6,9 @@ const selectItem = (value, key, data, setData) => {
     setData({...data, [key]: value})  
 }
 
-const generateSubtitle = (item, translate) => {
-    return 'oi'
+const generateSubtitle = (item) => {
+    
+    return item.observation
 }
 
 const getTitle = (action_type) => {

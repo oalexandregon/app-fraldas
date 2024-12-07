@@ -49,7 +49,7 @@ const Form = () => {
         }
     }, [])
 
-   
+   console.log(id);
 
     return <>
         <AppBar title={translate(getTitle(actionType))} id={params.id} _delete={async () => {
@@ -69,7 +69,7 @@ const Form = () => {
             padding: '1em',
             height: 'calc(100vh - 72px)'
         }}>
-            <Grid item={true} size={{ xs: 12 }}>
+            <Grid item={true} size={{ xs: 12 }} sx={{display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-start"}}>
                 {getForm(actionType)}
                 <Button
                     loading={loading}

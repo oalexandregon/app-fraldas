@@ -8,8 +8,8 @@ const Eat = ({ data, setData, translate }) => {
     setData({ ...data, 'action_type': 2 })
   }, [])
 
-  return <Grid container={true} spacing={2} sx={{ display: "flex", justifyContent: 'center' }}>
-    <Grid item={true} size={{ xs: 12 }} sx={{ width: "clamp(100px, 80vw, 500px)" }}>
+  return <Grid container={true} spacing={2} sx={{ display: "flex", justifyContent: 'center', maxWidth: "500px" }}>
+    <Grid item={true} size={{ xs: 12 }} sx={{ width: "clamp(100px, 80vw, 500px)", display: "flex", gap: "15px" }}>
       <Button variant='contained' color={data.type === 1 ? "secondary" : "primary"} onClick={() => {
         handleInputChange('side', null, data, setData);
         handleInputChange('end_date', null, data, setData);
@@ -53,7 +53,7 @@ const Eat = ({ data, setData, translate }) => {
           name="quantity"
           type={"number"}
           fullWidth={true} />
-      </Grid> : <Grid item={true} size={{ xs: 12 }} sx={{ width: "clamp(100px, 80vw, 500px)" }}>
+      </Grid> : <Grid item={true} size={{ xs: 12 }} sx={{ width: "clamp(100px, 80vw, 500px)", display: "flex", gap: "15px" }}>
         <Button variant='contained' color={data.side === 1 ? "secondary" : "primary"} onClick={() => { selectItem(1, "side", data, setData) }}>{translate("left")}</Button>
         <Button variant='contained' color={data.side === 2 ? "secondary" : "primary"} onClick={() => { selectItem(2, "side", data, setData) }}>{translate("right")}</Button>
         <Button variant='contained' color={data.side === 3 ? "secondary" : "primary"} onClick={() => { selectItem(3, "side", data, setData) }}>{translate("both")}</Button>
