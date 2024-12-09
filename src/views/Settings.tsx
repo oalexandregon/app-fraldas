@@ -18,12 +18,7 @@ const Settings: React.FC = function () {
 
   const navigate = useNavigate();
   const user = getUser();
-  const [data, setData] = useState({
-    name: null,
-    height: null,
-    birth: null,
-    weight: null,
-  });
+  const [data, setData] = useState({});
 
   const loadData = async () => {
 
