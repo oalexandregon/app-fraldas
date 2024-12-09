@@ -35,7 +35,7 @@ const Home: React.FC = () => {
 
     useEffect(() => {
         loadData();
-    }, [])
+    }, [data])
     return <Grid container={true}>
         <Grid size={{ xs: 12 }}
             sx={{
