@@ -2,8 +2,10 @@ import { IconButton } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import { Grid, Avatar, Box, Typography, CardNewItem, CustomList } from "../components";
 import { ACTIONS } from "../constants/actions";
+
 import SignalCellularAltIcon from '@mui/icons-material/SignalCellularAlt';
 import SettingsIcon from '@mui/icons-material/Settings';
+
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAppContext } from "../Context";
@@ -29,13 +31,15 @@ const Home: React.FC = () => {
         setProfile(profile)
 
         if (d) {
-            setData(d);
+            const filteredData = d.filter((item) => item.user_id === user.id)
+            setData(filteredData);        
         }
+        
     }
 
     useEffect(() => {
         loadData();
-    }, [data])
+    }, [])
     return <Grid container={true}>
         <Grid size={{ xs: 12 }}
             sx={{
