@@ -92,7 +92,7 @@ const Home: React.FC = () => {
                             ...styles.boxText
                         }}>
                             <Typography component="p" sx={{...styles.text1}}>{profile?.name}</Typography>
-                            <Typography component="p" sx={{...styles.text3}}>{profile?.birth ? calculateDuration(profile?.birth, "days") : 0} {translate("days")}</Typography>
+                            <Typography component="p" sx={{...styles.text3}}>{profile?.birth ? calculateDuration(profile?.birth, "day") : 0} {translate("days")}</Typography>
                         </Box>
                     </Box>
                 </Grid>

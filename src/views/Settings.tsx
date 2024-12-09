@@ -18,18 +18,23 @@ const Settings: React.FC = function () {
 
   const navigate = useNavigate();
   const user = getUser();
+  
   const [data, setData] = useState({});
 
   const loadData = async () => {
 
     const result = await get('profile', [{ field: "user_id", value: user.id }]);
+    console.log (result)
     setData(result);
   }
 
+ 
 
   useEffect(() => {
     loadData();
   }, [])
+
+  
 
   return (
 
@@ -74,7 +79,7 @@ const Settings: React.FC = function () {
               placeholder={translate('name')}
               fullWidth={true}
               onChange={(event) => handleInputChange("name", event.target.value, data, setData)}
-              value={data.name}
+              value={data?.name}
               sx={{ width: "clamp(100px, 80vw, 500px)" }}
             />
           </Grid>
@@ -86,7 +91,7 @@ const Settings: React.FC = function () {
               placeholder={translate('weight')}
               fullWidth={true}
               onChange={(event) => handleInputChange("weight", event.target.value, data, setData)}
-              value={data.weight}
+              value={data?.weight}
               sx={{ width: "clamp(100px, 80vw, 500px)" }}
             />
           </Grid>
@@ -98,7 +103,7 @@ const Settings: React.FC = function () {
               placeholder={translate('height')}
               fullWidth={true}
               onChange={(event) => handleInputChange("height", event.target.value, data, setData)}
-              value={data.height}
+              value={data?.height}
               sx={{ width: "clamp(100px, 80vw, 500px)" }}
             />
           </Grid>
@@ -124,6 +129,7 @@ const Settings: React.FC = function () {
                 data.user_id = user.id
                 await save('profile', data)
                 console.log(data)
+                
               }}
 
               sx={{ width: "200px" }}>
