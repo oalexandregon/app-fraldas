@@ -1,7 +1,16 @@
- const Dashboard: React.FC = function () {
-    return (
+import { AppBar } from "../components";
+import { useAppContext } from "../Context";
+
+const Dashboard: React.FC = function () {
+  const { translate } = useAppContext();
+  return (
+
+    <div>
+      <AppBar title={translate('dashboard')} />
       <h1>Dashboard</h1>
-    );
-  }
-  
-  export default Dashboard;
+    </div>
+
+  );
+}
+
+export default Dashboard;
