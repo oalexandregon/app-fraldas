@@ -48,8 +48,11 @@ const Home: React.FC = () => {
         >
             <Grid container={true}
                 sx={{
-                    alignItems: 'flex-end',
-                    marginTop: '1em'
+                    alignItems: 'center',
+                    marginTop: '1em',
+                    display: "flex", 
+                    justifyContent: "center", 
+                    
                 }}
             >
                 <Grid size={{ xs: 4 }}>
