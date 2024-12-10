@@ -30,13 +30,6 @@ const Home: React.FC = () => {
         const profile = await get("profile", [{ field: "user_id", value: user.id }])
         setProfile(profile);
         setData(d);
-
-        // if (d) {
-        //     const filteredData = d.filter((item) => item.user_id === user.id)
-        //     setData(filteredData);  
-                
-        // }
-        
     }
 
     useEffect(() => {
