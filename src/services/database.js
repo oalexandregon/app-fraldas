@@ -34,8 +34,10 @@ const get = async (table, conditions) => {
     return data[0];
 }
 
-const list = async (table) => {
-    const { data, error } = await supabase.from(table).select().eq("user_id", user.id).order('created_at', { ascending: false })
+
+const list = async (table, id) => {
+    const { data, error } = await supabase.from(table).select().eq("user_id", id).order('created_at', { ascending: false })
+
     if (error) {
         throw error;
     }

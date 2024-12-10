@@ -2,8 +2,12 @@ import { IconButton } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import { Grid, Avatar, Box, Typography, CardNewItem, CustomList } from "../components";
 import { ACTIONS } from "../constants/actions";
+
+
 import SignalCellularAltIcon from '@mui/icons-material/SignalCellularAlt';
 import SettingsIcon from '@mui/icons-material/Settings';
+
+
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAppContext } from "../Context";
@@ -20,22 +24,27 @@ const Home: React.FC = () => {
     const navigate = useNavigate();
     const theme = useTheme();
 
+;
     const [data, setData] = useState([]);
-    const [profile, setProfile] = useState({})
+    const [profile, setProfile] = useState({});
 
     const loadData = async () => {
-        const d = await list('action_app_fraldas');
+        const d = await list('action_app_fraldas', user.id);
         const profile = await get("profile", [{ field: "user_id", value: user.id }])
-        setProfile(profile)
-
-        if (d) {
-            setData(d);
-        }
+        setProfile(profile);
+        setData(d);
+        
     }
 
     useEffect(() => {
-        loadData();
-    }, [data])
+        if (user && user.id) {
+            loadData(); 
+        }
+    }, [user, data]);
+    
+
+    
+
     return <Grid container={true}>
         <Grid size={{ xs: 12 }}
             sx={{
@@ -44,8 +53,13 @@ const Home: React.FC = () => {
         >
             <Grid container={true}
                 sx={{
-                    alignItems: 'flex-end',
-                    marginTop: '1em'
+
+                    alignItems: 'center',
+                    marginTop: '1em',
+                    display: "flex", 
+                    justifyContent: "center", 
+                    
+
                 }}
             >
                 <Grid size={{ xs: 4 }}>
