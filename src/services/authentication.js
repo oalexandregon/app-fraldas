@@ -3,7 +3,7 @@ import { redirect } from "react-router-dom";
 const isAuthenticated = () => {
     const session = localStorage.getItem("session");
 
-    if (session) throw redirect("/");
+    if (session) throw navigate("/");
     return null;
 }
 
