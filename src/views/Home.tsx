@@ -3,8 +3,10 @@ import { useTheme } from "@mui/material/styles";
 import { Grid, Avatar, Box, Typography, CardNewItem, CustomList } from "../components";
 import { ACTIONS } from "../constants/actions";
 
+
 import SignalCellularAltIcon from '@mui/icons-material/SignalCellularAlt';
 import SettingsIcon from '@mui/icons-material/Settings';
+
 
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -21,6 +23,7 @@ const Home: React.FC = () => {
     const user = getUser()
     const navigate = useNavigate();
     const theme = useTheme();
+
 ;
     const [data, setData] = useState([]);
     const [profile, setProfile] = useState({});
@@ -30,6 +33,7 @@ const Home: React.FC = () => {
         const profile = await get("profile", [{ field: "user_id", value: user.id }])
         setProfile(profile);
         setData(d);
+        
     }
 
     useEffect(() => {
@@ -40,6 +44,7 @@ const Home: React.FC = () => {
     
 
     
+
     return <Grid container={true}>
         <Grid size={{ xs: 12 }}
             sx={{
@@ -48,11 +53,13 @@ const Home: React.FC = () => {
         >
             <Grid container={true}
                 sx={{
+
                     alignItems: 'center',
                     marginTop: '1em',
                     display: "flex", 
                     justifyContent: "center", 
                     
+
                 }}
             >
                 <Grid size={{ xs: 4 }}>
@@ -159,7 +166,6 @@ const Home: React.FC = () => {
                                     color={action.color}
                                     actionType={action.actionType}
                                     translation={action.translation}
-                            
                                 />
                             </Grid>)
                         }
